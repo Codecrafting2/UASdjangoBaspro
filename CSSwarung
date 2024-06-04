@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #ADD8E6;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    margin: 0;
+    color: #fff;
+}
+
+#cart-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#menu {
+    width: 100%;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.menu-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    width: 150px;
+}
+
+.menu-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #ADD8E6;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+}
+
+button i {
+    margin-right: 5px;
+}
+
+button:hover {
+    background-color: #87CEEB;
+}
+
+#cart {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    display: none;
+    z-index: 1000;
+}
+
+#cart ul {
+    list-style: none;
+    padding: 0;
+}
+
+#cart ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#total {
+    font-weight: bold;
+}
+
+#checkout-button {
+    background-color: #ADD8E6;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#checkout-button:hover {
+    background-color: #87CEEB;
+}
+
+#payment-methods {
+    margin-top: 20px;
+}
+
+#payment-methods button {
+    background-color: #ADD8E6;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#payment-methods button:hover {
+    background-color: #87CEEB;
+}
