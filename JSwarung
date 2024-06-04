@@ -1,0 +1,116 @@
+let cart = [];
+let total = 0;
+let qrWindow;
+
+function addToCart(item, price) {
+    cart.push({ item, price });
+    total += price;
+    updateCart();
+}
+
+function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = '';
+    cart.forEach((cartItem, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${cartItem.item} - Rp ${cartItem.price}`;
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Hapus';
+        removeButton.onclick = () => removeFromCart(index);
+        li.appendChild(removeButton);
+        cartItems.appendChild(li);
+    });
+    document.getElementById('total').textContent = total;
+    document.getElementById('cart').style.display = 'block';
+}
+
+function removeFromCart(index) {
+    total -= cart[index].price;
+    cart.splice(index, 1);
+    updateCart();
+    if (cart.length === 0) {
+        document.getElementById('cart').style.display = 'none';
+    }
+}
+
+function toggleCart() {
+    const cartDisplay = document.getElementById('cart').style.display;
+    document.getElementById('cart').style.display = cartDisplay === 'block' ? 'none' : 'block';
+}
+
+function showPaymentMethods() {
+    document.getElementById('payment-methods').style.display = 'block';
+}
+
+function processPayment(method) {
+    // Di sini Anda bisa menambahkan logika untuk pemrosesan pembayaran sesuai metode yang dipilih
+    alert(`Pembayaran dengan metode ${method} berhasil! Total belanja: Rp ${total}`);
+    cart = [];
+    total = 0;
+    updateCart();
+    document.getElementById('cart').style.display = 'none';
+    document.getElementById('payment-methods').style.display = 'none';
+}
+
+function processPayment(method) {
+    if (method === 'QRIS') {
+        showQR();
+    } else {
+        // Di sini Anda bisa menambahkan logika untuk pemrosesan pembayaran sesuai metode yang dipilih
+        alert(`Pembayaran dengan metode ${method} berhasil! Total belanja: Rp ${total}`);
+        cart = [];
+        total = 0;
+        updateCart();
+        document.getElementById('cart').style.display = 'none';
+        document.getElementById('payment-methods').style.display = 'none';
+    }
+}
+
+function showQR() {
+    const qrWindow = window.open("", "_blank", "width=400,height=400");
+    qrWindow.document.write('<img src="path_to_qr_image" alt="QR Code" style="display:block;margin:auto;">');
+}
+
+function processQRIS() {
+    qrWindow = window.open("", "_blank", "width=400,height=400");
+    qrWindow.document.write('<img src="path_to_qr_image" alt="QR Code" style="display:block;margin:auto;">');
+    qrWindow.onunload = function() {
+        alert("Pembayaran telah selesai. Terima kasih atas pembeliannya!");
+        finishPayment();
+    };
+}
+
+function processBankTransfer() {
+    const bankNumber = prompt("Masukkan nomor rekening bank Anda:");
+    const address = prompt("Masukkan alamat lengkap Anda:");
+    const fullName = prompt("Masukkan nama lengkap Anda:");
+
+    if (bankNumber && address && fullName) {
+        alert(`Terima kasih, ${fullName}! Pembayaran melalui transfer bank telah berhasil.`);
+        finishPayment();
+    } else {
+        alert("Silakan lengkapi semua informasi yang diperlukan.");
+    }
+}
+
+function processCreditCard() {
+    const cardNumber = prompt("Masukkan nomor kartu kredit Anda:");
+    const address = prompt("Masukkan alamat lengkap Anda:");
+    const fullName = prompt("Masukkan nama lengkap Anda:");
+
+    if (cardNumber && address && fullName) {
+        alert(`Terima kasih, ${fullName}! Pembayaran dengan kartu kredit telah berhasil.`);
+        finishPayment();
+    } else {
+        alert("Silakan lengkapi semua informasi yang diperlukan.");
+    }
+}
+
+function finishPayment() {
+    cart = [];
+    total = 0;
+    updateCart();
+    document.getElementById('cart').style.display = 'none';
+    document.getElementById('payment-methods').style.display = 'none';
+    window.alert("Pembayaran telah selesai. Terima kasih atas pembeliannya!");
+}
